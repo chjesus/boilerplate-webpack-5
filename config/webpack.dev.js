@@ -14,14 +14,14 @@ module.exports = merge(webpackConfig, {
     publicPath: "/",
   },
   devServer: {
-    contentBase: paths.public,
-    historyApiFallback: {
-      disableDotRule: true,
-      index: "/index.html",
-    },
-    inline: true,
-    contentBasePublicPath: "/",
-    publicPath: "/",
+    // contentBase: paths.public,
+    // historyApiFallback: {
+    //   disableDotRule: true,
+    //   index: "/index.html",
+    // },
+    // inline: true,
+    // contentBasePublicPath: "/",
+    // publicPath: "/",
     open: true,
     port: 9000,
   },

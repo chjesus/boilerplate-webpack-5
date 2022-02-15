@@ -10,6 +10,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: paths.html,
+      filename: 'index.html',
       favicon: paths.favicon,
       inject: "body",
     }),
