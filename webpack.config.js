@@ -1,18 +1,18 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const { paths } = require("./config/environment");
+const { paths } = require('./config/environment')
 
 module.exports = {
-  entry: "./src/app.js",
+  entry: './src/app.js',
   resolve: {
-    extensions: [".js", ".css", ".scss"],
+    extensions: ['.js', '.css', '.scss'],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: paths.html,
       filename: 'index.html',
       favicon: paths.favicon,
-      inject: "body",
+      inject: 'body',
     }),
   ],
   module: {
@@ -20,27 +20,16 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        use: ["babel-loader", "eslint-loader"],
+        use: ['babel-loader', 'eslint-loader'],
       },
       {
-        test: /\.(png|jpeg|jpg|gif)$/,
-        // type: "asset/inline",
-        type: "asset/resource",
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        // type: "asset/inline",
-        type: "asset/resource",
-      },
-      {
-        test: /\.svg$/,
-        use: ["url-loader"],
-        type: "javascript/auto",
+        test: /\.(png|jpeg|jpg|gif|svg)$/,
+        type: 'asset/inline',
       },
       {
         test: /\.(handlebars|hbs)$/,
-        loader: "handlebars-loader",
+        loader: 'handlebars-loader',
       },
     ],
   },
-};
+}

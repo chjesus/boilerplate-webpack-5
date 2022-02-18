@@ -1,34 +1,24 @@
-const { merge } = require("webpack-merge");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpackConfig = require("../webpack.config");
+const { merge } = require('webpack-merge')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpackConfig = require('../webpack.config')
 
-const { paths } = require("./environment");
+const { paths } = require('./environment')
+const path = require('path')
 
 module.exports = merge(webpackConfig, {
-  mode: "development",
-  devtool: "eval-source-map",
+  mode: 'development',
+  devtool: 'source-map',
   output: {
-    path: paths.build,
-    filename: "static/js/bundle.js",
-    chunkFilename: "static/js/[name].chunk.js",
-    publicPath: "/",
+    path: paths.public,
+    filename: 'static/js/[name].js',
   },
   devServer: {
-    // contentBase: paths.public,
-    // historyApiFallback: {
-    //   disableDotRule: true,
-    //   index: "/index.html",
-    // },
-    // inline: true,
-    // contentBasePublicPath: "/",
-    // publicPath: "/",
     open: true,
     port: 9000,
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "static/css/main.css",
-      chunkFilename: "static/css/main.chunk.css",
+      filename: 'static/css/[name].css',
     }),
   ],
   module: {
@@ -38,12 +28,16 @@ module.exports = merge(webpackConfig, {
         exclude: /(node_modules)/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader",
-          "postcss-loader",
+          'css-loader',
+          'sass-loader',
+          'postcss-loader',
         ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        type: 'asset/inline',
       },
     ],
   },
-  target: "web",
-});
+  target: 'web',
+})

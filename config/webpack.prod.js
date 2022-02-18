@@ -13,7 +13,7 @@ module.exports = merge(webpackConfig, {
     filename: "static/js/[name].[contenthash:8].js",
     chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
     publicPath: "/",
-    assetModuleFilename: "static/media/[name][ext]",
+    assetModuleFilename: "static/assets/[name][ext]",
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -34,7 +34,10 @@ module.exports = merge(webpackConfig, {
           "postcss-loader",
         ],
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        type: 'asset/resource',
+      },
     ],
   },
-  // perfomance: {},
 });
